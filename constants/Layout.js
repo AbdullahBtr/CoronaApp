@@ -19,24 +19,6 @@ export default {
 
 
 
-    searchField:{
-        marginVertical: 20,
-        backgroundColor: 'white',
-        borderColor: Color.greyBackground,
-        borderWidth: 2,
-        borderColor: Color.bg5,        
-    },
-
-    searchFieldContainer:{
-        paddingLeft: 40,
-        paddingRight: 40,
-        },
-
-    modalTopField:{
-        flex: 2,
-        backgroundColor: Color.metric,
-
-    },
 
 
     

@@ -36,12 +36,12 @@ export default function ModalScreen(props) {
             animationType="slide"
             supportedOrientations={["portrait", "landscape"]}
         >
-            <View style={[Layout.topContainer, Layout.modalTopField]}>
+            <View style={[Layout.topContainer, styles.modalTopField]}>
                 <TitleText text='Search for county'></TitleText>
             </View>
             <View style={[Layout.middleContainer]}>
                 <TextInput
-                    style={[Layout.searchField,Layout.searchFieldContainer]}
+                    style={[styles.searchField,styles.searchFieldContainer]}
                     value={filterCountry}
                     onChangeText={setFilterCountry}
                     placeholder="Landkreis suchen"
@@ -116,6 +116,24 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: Color.danger,
         marginBottom: 10,
+    },
+    
+    searchField:{
+        marginVertical: 20,
+        backgroundColor: 'white',
+        borderColor: Color.greyBackground,
+        borderWidth: 2,
+        borderColor: Color.bg5,        
+    },
+
+    searchFieldContainer:{
+        paddingLeft: 40,
+        paddingRight: 40,
+        },
+
+    modalTopField:{
+        flex: 2,
+
     },
 
 
