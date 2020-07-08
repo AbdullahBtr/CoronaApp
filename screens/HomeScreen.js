@@ -6,11 +6,14 @@ import Colors from '../constants/Color';
 import Layout from "../constants/Layout";
 import CustomCard from "../components/CustomCard";
 import CustomButton from "../components/CustomButton";
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function () {
 
+    {/* Declare state variables to save fetched API data and access it */}
     const [stateData, setStateData] = useState([]);
     const screenWidth = Dimensions.get("window").width - 20;
+    {/* Declate state variables for showing and hiding the searchField Modal */}
     const [showModal, setShowModal] = useState(false);
 
     const [data, setData] = useState({})
@@ -22,6 +25,7 @@ export default function () {
         )
             .then((response) => response.json())
             .then((json) => {
+                {/* we calculate the total value for each field by mapping through all values */}
                 let totalPeople = 0;
                 let totalCases = 0;
                 let totalDeath = 0;
@@ -32,6 +36,7 @@ export default function () {
                     casesper100 = casesper100 + state.attributes.faelle_100000_EW;
                     totalPeople = totalPeople + state.attributes.LAN_ew_EWZ;
                 })
+                {/*API returns UNIx Timestamps, we have to convert it to a readable date format */}
                 casesper100 = (casesper100 / 16).toFixed(0);
                 var a = new Date(json.features[0].attributes.Aktualisierung);
                 var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
@@ -64,8 +69,10 @@ export default function () {
         setData(item.attributes)
     }
 
+    {/*Display Data in the predefined Custom Cards  */}
     return (
         <View style={styles.screen}>
+            <ScrollView>
             <ModalScreen visible={showModal} hideModal={hideModal} selectItem={selectItem}></ModalScreen>
             <View style={[styles.topContainer, Layout.topContainer]}>
                 <TitleText text="Corona App"></TitleText>
@@ -94,7 +101,7 @@ export default function () {
 
                 </View>
             )}
-
+            </ScrollView>
         </View>
     )
 }
