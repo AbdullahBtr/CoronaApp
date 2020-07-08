@@ -9,7 +9,7 @@ import CustomButton from "./CustomButton";
 export default function ModalScreen(props) {
     const {height} = useDimensions().window;
     const [data, setData] = useState([]);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
     const [filterCountry, setFilterCountry] = useState("");
 
     const handleClick = (item) => {
@@ -24,7 +24,8 @@ export default function ModalScreen(props) {
             .then((response) => response.json())
             .then((json) => {
                 setData(json.features)
-                console.log(json.features [0])
+                
+                
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
@@ -73,13 +74,6 @@ export default function ModalScreen(props) {
                                         setFilterCountry('');
                                     }}
                                 />
-                                {/*<Button title={index + 1 + '. ' + item.attributes.county}*/}
-                                {/*        onPress={() => {*/}
-                                {/*            handleClick(item);*/}
-                                {/*            props.hideModal();*/}
-                                {/*            setFilterCountry('');*/}
-                                {/*        }}>*/}
-                                {/*</Button>*/}
                             </View>
                         )}
                     />
