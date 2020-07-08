@@ -19,6 +19,7 @@ export default function () {
         )
             .then((response) => response.json())
             .then((json) => {
+                {/* we calculate the total value for each field by mapping through all values */}
                 let totalPeople = 0;
                 let totalCases = 0;
                 let totalDeath = 0;
@@ -29,6 +30,7 @@ export default function () {
                     casesper100 = casesper100 + state.attributes.faelle_100000_EW;
                     totalPeople = totalPeople + state.attributes.LAN_ew_EWZ;
                 })
+                {/*API returns UNIx Timestamps, we have to convert it to a readable date format */}
                 casesper100 = (casesper100 / 16).toFixed(0);
                 var a = new Date(json.features[0].attributes.Aktualisierung);
                 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -48,6 +50,7 @@ export default function () {
             .finally(() => setLoading(false));
     }, []);
 
+    {/* Navigate inbetween Home and State screens */}
     return (
         <NavigationContainer>
             <Tab.Navigator tabBarOptions={{
@@ -81,7 +84,7 @@ export default function () {
                            })}
             >
                 <Tab.Screen options={{title: "Home"}} name="Home" component={HomeScreen}/>
-                <Tab.Screen options={{title: "Info"}} name="Info" component={InfoScreen}/>
+                <Tab.Screen options={{title: "State"}} name="Info" component={InfoScreen}/>
             </Tab.Navigator>
         </NavigationContainer>
     )
